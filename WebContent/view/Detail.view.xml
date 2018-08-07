@@ -1,0 +1,91 @@
+<core:View controllerName="sap.ui.halomoan.PoApproval.view.Detail" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page title="{i18n>DetailTitle}" class="sapUiFioriObjectPage" showNavButton="{device>/isPhone}" navButtonPress="handleNavButtonPress">
+		<ObjectHeader title="{PurchaseOrderID}" number="{path:'totalValue', formatter: 'sap.ui.halomoan.PoApproval.util.Formatter.number'}"
+			numberUnit="{currency}">
+			<attributes>
+				<ObjectAttribute text="{destinationPlant} - {purchaseGroup}"/>
+				<ObjectAttribute text="{createdBy}"/>
+				<ObjectAttribute text="{ path: 'date', formatter: 'sap.ui.halomoan.PoApproval.util.Formatter.date' }"/>
+			</attributes>
+			<firstStatus>
+				<ObjectStatus text="{ path: 'status', formatter: 'sap.ui.halomoan.PoApproval.util.Formatter.statusText' }"
+					state="{ path: 'status', formatter: 'sap.ui.halomoan.PoApproval.util.Formatter.statusState' }"/>
+			</firstStatus>
+		</ObjectHeader>
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://supplier">
+					<form:SimpleForm id="SupplierForm" minWidth="512">
+						<core:Title text="Vendor Address"/>
+						<Label text="Name"/>
+						<Text text="{name}"/>
+						<Label text="Addr"/>
+						<Text text="{address}"/>
+						<Label text="E-Mail"/>
+						<Text text="{email}"/>
+						<Label text="Phone"/>
+						<Text text="{telephone}"/>
+					</form:SimpleForm>
+					<Table id="detail_material" headerText="{i18n>LineItemTableHeader}" items="{PurchaseOrderItemSet}" selectionMode="Single"
+						itemPress="displayText">
+						<columns>
+							<Column>
+								<header>
+									<Label text="Product"/>
+								</header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header>
+									<Label text="Delivery Date"/>
+								</header>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<header>
+									<Label text="Quantity"/>
+								</header>
+							</Column>
+							<Column hAlign="Right">
+								<header>
+									<Label text="Price"/>
+								</header>
+							</Column>
+						</columns>
+						<ColumnListItem type="Active">
+							<cells>
+								<ObjectIdentifier title="{material}"/>
+								<Text text="{ path:'deliveryDate' }"/>
+								<Text text="{ path:'quantity', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.quantity' }"/>
+								<ObjectNumber number="{ path:'netValue' }" numberUnit="{currency}"/>
+							</cells>
+						</ColumnListItem>
+					</Table>
+				</IconTabFilter>
+			</items>
+			<items>
+				<IconTabFilter icon="sap-icon://attachment">
+					<List id="listAttachment"
+					items="{
+					path: 'AttachmentSet'
+					}">
+					<StandardListItem
+					title="{Filename}.{Filetype}"
+					description="Owner: {Fileowner}"
+					info="Size: { path: 'Size', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filesize'} KB"
+					icon="{ path: 'Filetype', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filetype'}"
+					iconDensityAware="false"
+					iconInset="false" />
+						
+					</List>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>ApproveButtonText}" type="Accept" icon="sap-icon://accept" press="handleApprove"/>
+					<Button text="{i18n>RejectButtonText}" type="Reject" icon="sap-icon://decline" press="handleReject"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>
