@@ -22,7 +22,7 @@ sap.ui.jsview("sap.ui.halomoan.PoApproval.view.App", {
 
 		// create app
 
-		this.app = new sap.m.SplitApp();
+		this.app = new sap.m.SplitApp("SplitApp");
 
 
 

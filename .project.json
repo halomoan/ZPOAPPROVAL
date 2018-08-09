@@ -16,5 +16,12 @@
     "defaultLanguage": "",
     "defaultI18NPropertyFile": "",
     "resourceModelName": ""
-  }
+  },
+  "generation": [
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 08 Aug 2018 13:25:49 GMT"
+    }
+  ]
 }

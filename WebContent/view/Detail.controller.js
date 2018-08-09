@@ -146,6 +146,28 @@ sap.ui.controller("sap.ui.halomoan.PoApproval.view.Detail", {
 			sap.m.MessageBox.show(itemtext, sap.m.MessageBox.Icon.NONE, "Item Text");
 		}
 
+	},
+	onAttachmentSelect: function(evt){
+		var context = evt.getParameter("listItem").getBindingContext();
+		var sPath = evt.getParameter("listItem").getBindingContext().getPath();
+		var oHtml;
+		/*console.log(evt.getParameters());
+		console.log(evt.getParameter("listItem").getBindingContext(),pdfURL);
+		console.log(evt.getSource());
+		*/
+		var oFile = evt.getParameter("listItem").getModel().getProperty(sPath);
+		
+		this.getView().byId("listAttachment").removeSelections(true);
+		if (oFile.InlineFrame) {
+			oHtml = this.getView().byId("idDownloadFrame");
+			oHtml.setContent("<span></span>");
+			this.nav.to("AttachmentPreview", context);
+		} else{
+			oHtml = this.getView().byId("idDownloadFrame");
+			//var sURI = "https://jack.uol.com.sg:8094/sap/opu/odata/sap/ZPOAPPROVAL_SRV/" + sPath + "/$value";
+			var sURI = sPath + "/$value";
+			oHtml.setContent("<iframe src="+ sURI +" height='0' width='0' border='0' border='none' style='visibility: hidden;'></iframe>");
+		}
 	}
 
 });

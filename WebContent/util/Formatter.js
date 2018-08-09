@@ -14,9 +14,10 @@ sap.ui.halomoan.PoApproval.util.Formatter = {
 
 	statusText: function(value) {
 
-		var bundle = this.getModel("i18n").getResourceBundle();
-
-		return bundle.getText("StatusText" + value, "?");
+		if(value) {
+			var bundle = this.getModel("i18n").getResourceBundle();
+			return bundle.getText("StatusText" + value, "?");
+		}
 
 	},
 
@@ -33,7 +34,7 @@ sap.ui.halomoan.PoApproval.util.Formatter = {
 		if (value) {
 
 			var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-				pattern: "dd/MM/yyyy"
+				pattern: "dd/MMM/yyyy"
 			});
 
 			var year = value.substr(0, 4);
@@ -50,6 +51,12 @@ sap.ui.halomoan.PoApproval.util.Formatter = {
 
 		}
 
+	},
+	odate: function(oValue){
+		var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+			pattern: "dd/MMM/yyyy"
+		});
+		return oDateFormat.format(oValue);
 	},
 
 	quantity: function(value) {

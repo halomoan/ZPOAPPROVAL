@@ -64,18 +64,23 @@
 			<items>
 				<IconTabFilter icon="sap-icon://attachment">
 					<List id="listAttachment"
+					mode="SingleSelectMaster"
+					select="onAttachmentSelect"
 					items="{
 					path: 'AttachmentSet'
 					}">
-					<StandardListItem
-					title="{Filename}.{Filetype}"
-					description="Owner: {Fileowner}"
-					info="Size: { path: 'Size', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filesize'} KB"
-					icon="{ path: 'Filetype', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filetype'}"
-					iconDensityAware="false"
-					iconInset="false" />
+						<StandardListItem
+						title="{Filename}.{Filetype}"
+						description="Owner: {Fileowner}"
+						info="Size: { path: 'Size', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filesize'} KB"
+						icon="{ path: 'Filetype', formatter:'sap.ui.halomoan.PoApproval.util.Formatter.filetype'}"
+						iconDensityAware="false"
+						iconInset="false">
+							
+						</StandardListItem>
 						
 					</List>
+					<core:HTML id="idDownloadFrame"/>
 				</IconTabFilter>
 			</items>
 		</IconTabBar>
