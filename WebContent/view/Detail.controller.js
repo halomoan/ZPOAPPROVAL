@@ -165,7 +165,7 @@ sap.ui.controller("sap.ui.halomoan.PoApproval.view.Detail", {
 		} else{
 			oHtml = this.getView().byId("idDownloadFrame");
 			//var sURI = "https://jack.uol.com.sg:8094/sap/opu/odata/sap/ZPOAPPROVAL_SRV/" + sPath + "/$value";
-			var sURI = sPath + "/$value";
+			var sURI = "/sap/opu/odata/sap/ZPOAPPROVAL_SRV/" + sPath + "/$value";
 			oHtml.setContent("<iframe src="+ sURI +" height='0' width='0' border='0' border='none' style='visibility: hidden;'></iframe>");
 		}
 	}

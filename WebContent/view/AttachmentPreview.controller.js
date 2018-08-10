@@ -32,7 +32,7 @@ sap.ui.define([
 			           		
 							if (parseFloat(oFile.Size) > 0){          		
 								//sURI = "https://jack.uol.com.sg:8094/sap/opu/odata/sap/ZPOAPPROVAL_SRV/" + sPath + "/$value";
-								sURI = sPath + "/$value";
+								sURI = "/sap/opu/odata/sap/ZPOAPPROVAL_SRV/" + sPath + "/$value";
 							}
 							var oHtml = oView.byId("idPreviewFrame");
 				           	oHtml.setContent("<iframe src="+ sURI +" height='80%' width='100%'></iframe>");
